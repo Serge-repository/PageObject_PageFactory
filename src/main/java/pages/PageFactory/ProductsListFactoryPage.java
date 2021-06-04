@@ -78,8 +78,8 @@ public class ProductsListFactoryPage extends GeneralFactoryPage {
         try {
             waitingForPageElement(subscribeBanner);
             clickAction(closeSubscribeBanner);
-        } catch (TimeoutException exception) {
-            exception.printStackTrace();
+        } catch (Exception exception) {
+            System.out.println("No banner");
         }
     }
 

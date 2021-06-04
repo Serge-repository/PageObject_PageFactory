@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElement;
 import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElementValue;
 
 public class ProductFactoryPage extends GeneralFactoryPage {
@@ -57,7 +58,7 @@ public class ProductFactoryPage extends GeneralFactoryPage {
     }
 
     public void waitingForNumberTwoAppearNearCompareIcon() {
-        wait.until(textToBePresentInElementValue(numberAddedToCompareList, "2"));
+        wait.until(textToBePresentInElement(numberAddedToCompareList, "2"));
     }
 
     public int getNumberOfAddedItems() {
