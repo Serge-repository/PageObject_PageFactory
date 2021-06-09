@@ -1,14 +1,14 @@
-package ui_tests;
+package FactoryRunner;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.PageObject.TestBase;
+import pages.PageFactory.TestBaseFactory;
 
 import static org.testng.Assert.assertTrue;
 
-public class H24Task1_2 extends TestBase {
+public class H24Task2_1 extends TestBaseFactory {
 
     @BeforeClass
     public void actionsBeforeTestClass() {
@@ -26,10 +26,11 @@ public class H24Task1_2 extends TestBase {
     }
 
     @Test
-    public void searchByPrice() {
-        productsListPage.samsungPhonesSearch();
-        productsListPage.setUpPriceLimits("5000", "15000");
-        productsListPage.selectedManufacturersPriceList()
-                .forEach(s -> assertTrue(s > 5000 && s < 15000, "Price is between 5k and 15k"));
+    public void searchByManufacturers() {
+        productsListFactoryPage.samsungPhonesSearch();
+        productsListFactoryPage.selectRequiredModels();
+        productsListFactoryPage.checkThatOnlySelectedPhonesAvailable()
+                .forEach(s -> assertTrue(s.getText().contains("Samsung") || s.getText().contains("Apple")
+                        || s.getText().contains("Huawei"), "Samsung, Apple, Huawei selected"));
     }
 }

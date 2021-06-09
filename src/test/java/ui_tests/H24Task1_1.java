@@ -1,44 +1,36 @@
 package ui_tests;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.PageObject.ProductsListPage;
+import pages.PageObject.TestBase;
 
-public class H24Task1_1 {
-    WebDriver driver;
-    WebDriverWait wait;
+import static org.testng.Assert.assertTrue;
 
-    ProductsListPage productsListPage;
+public class H24Task1_1 extends TestBase {
 
     @BeforeClass
     public void actionsBeforeTestClass() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, 10);
+        super.actionsBeforeTestClass();
     }
 
     @AfterClass
     public void actionsAfterTestClass() {
-        driver.quit();
+        super.actionsAfterTestClass();
     }
 
     @BeforeMethod
     public void actionsBeforeTestMethod() {
-        driver.get("https://rozetka.com.ua/");
-        productsListPage = new ProductsListPage(driver, wait);
+        super.actionsBeforeTestMethod();
     }
 
     @Test
     public void searchByManufacturers() {
         productsListPage.samsungPhonesSearch();
-        productsListPage.scrollMethod();
         productsListPage.selectRequiredModels();
-        productsListPage.checkThatOnlySelectedPhonesAvailable("Samsung", "Apple", "Huawei");
+        productsListPage.selectedManufacturersList()
+                .forEach(s -> assertTrue(s.getText().contains("Samsung") || s.getText().contains("Apple")
+                        || s.getText().contains("Huawei"), "Samsung, Apple, Huawei selected"));
     }
 }

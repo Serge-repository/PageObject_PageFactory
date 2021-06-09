@@ -8,20 +8,22 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentI
 
 public class ProductPage extends GeneralPage {
 
-    By compareButton = By.xpath("//button[@class='compare-button ng-star-inserted']");
-    By numberAddedToCompareList = By.xpath("//rz-icon-counter//child::span");
-    By productTitle = By.cssSelector("h1[class='product__title']");
-    By productPrice = By.cssSelector("p.product-prices__big");
-    By productListPageHeader = By.cssSelector("h1[class='catalog-heading ng-star-inserted']");
-    By compareIcon = By.cssSelector("li[class='header-actions__item header-actions__item--comparison'] button");
-    By compareMonitorsLink = By.cssSelector("a.comparison-modal__link");
-    By productPricesInCompareList = By.cssSelector("div[class='product__prices']");
+    private final By compareButton = By.xpath("//button[@class='compare-button ng-star-inserted']");
+    private final By numberAddedToCompareList = By.xpath("//rz-icon-counter//child::span");
+    private final By productTitle = By.cssSelector("h1[class='product__title']");
+    private final By productCode = By.cssSelector("span.product__code-accent");
+    private final By productPrice = By.cssSelector("p.product-prices__big");
+    private final By productListPageHeader = By.cssSelector("h1[class='catalog-heading ng-star-inserted']");
+    private final By compareIcon = By.cssSelector("li[class='header-actions__item header-actions__item--comparison'] button");
+    private final By compareMonitorsLink = By.cssSelector("a.comparison-modal__link");
+    private final By productPricesInCompareList = By.cssSelector("div[class='product__prices']");
 
     public ProductPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
     }
 
     public void clickOnCompareButton() {
+        scrollMethod(productCode);
         clickAction(compareButton);
         waitingForPageElement(numberAddedToCompareList);
     }

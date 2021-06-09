@@ -69,10 +69,10 @@ public class Task1 {
         int secondMonitorPrice = productFactoryPage.getMonitorPrice();
 
         productFactoryPage.openComparePage();
-        assertEquals((compareProductsFactoryPage.getAllProductPricesFromComparePage()).size(), 2);
-        assertEquals(monitorTitle, compareProductsFactoryPage.getFirstProductName());
-        assertEquals(secondMonitorTitle, compareProductsFactoryPage.getSecondProductName());
-        assertEquals(secondMonitorPrice, compareProductsFactoryPage.getSecondProductPrice());
-        assertEquals(monitorPrice, compareProductsFactoryPage.getFirstProductPrice());
+        assertEquals((compareProductsFactoryPage.getAllProductPricesFromComparePage()).size(), 2, "Checking that 2 products available");
+        assertEquals(monitorTitle, compareProductsFactoryPage.getFirstProductName(), "First selected product name is correct");
+        assertEquals(secondMonitorTitle, compareProductsFactoryPage.getSecondProductName(), "Second selected product name is correct");
+        assertEquals(secondMonitorPrice, compareProductsFactoryPage.getSecondProductPrice(), "Second selected product price is correct");
+        assertEquals(monitorPrice, compareProductsFactoryPage.getFirstProductPrice(), "Second selected product name is correct");
     }
 }

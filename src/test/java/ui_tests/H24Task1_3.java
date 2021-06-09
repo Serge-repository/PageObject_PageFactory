@@ -1,46 +1,37 @@
 package ui_tests;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.PageObject.ProductsListPage;
+import pages.PageObject.TestBase;
 
-public class H24Task1_3 {
-    WebDriver driver;
-    WebDriverWait wait;
+import static org.testng.Assert.assertTrue;
 
-    ProductsListPage productsListPage;
+public class H24Task1_3 extends TestBase {
 
     @BeforeClass
     public void actionsBeforeTestClass() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, 10);
+        super.actionsBeforeTestClass();
     }
 
     @AfterClass
     public void actionsAfterTestClass() {
-        driver.quit();
+        super.actionsAfterTestClass();
     }
 
     @BeforeMethod
     public void actionsBeforeTestMethod() {
-        driver.get("https://rozetka.com.ua/");
-        productsListPage = new ProductsListPage(driver, wait);
+        super.actionsBeforeTestMethod();
     }
 
     @Test
     public void searchByApple() {
         productsListPage.samsungPhonesSearch();
-        productsListPage.scrollMethod();
         productsListPage.uncheckSamsungLabel();
-        productsListPage.searchUsingProductSearchBar("Apple");
+        assertTrue(productsListPage.searchUsingProductSearchBar("Apple").isDisplayed(), "Apple products selected");
         productsListPage.checkAppleLabel();
-        productsListPage.checkThatOnlyOneSelectedPhoneAvailable("Apple");
+        productsListPage.selectedManufacturersList()
+                .forEach(s -> assertTrue(s.getText().contains("Apple"), "Every product is Apple product"));
     }
 }

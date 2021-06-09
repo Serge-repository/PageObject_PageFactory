@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
@@ -18,11 +17,10 @@ public class HomeFactoryPage extends GeneralFactoryPage {
 
     public HomeFactoryPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
-        PageFactory.initElements(driver, this);
     }
 
     private void localImplicitWait() {
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
     public void locateToDropdown() {

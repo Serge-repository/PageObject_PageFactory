@@ -3,14 +3,11 @@ package pages.PageFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
 public class CompareProductsFactoryPage extends GeneralFactoryPage {
-
-    WebDriver driver;
 
     @FindBy(css = "div[class='product__prices']")
     private List<WebElement> productPricesInCompareList;
@@ -23,7 +20,6 @@ public class CompareProductsFactoryPage extends GeneralFactoryPage {
 
     public CompareProductsFactoryPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
-        PageFactory.initElements(driver, this);
     }
 
     public List<WebElement> getAllProductPricesFromComparePage() {

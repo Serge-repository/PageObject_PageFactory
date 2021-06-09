@@ -2,7 +2,6 @@ package pages.PageFactory;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -51,7 +50,6 @@ public class ProductsListFactoryPage extends GeneralFactoryPage {
 
     public ProductsListFactoryPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
-        PageFactory.initElements(driver, this);
     }
 
     public void setUpPriceLimits(String minimumPrice, String maximumPrice) {
@@ -108,10 +106,8 @@ public class ProductsListFactoryPage extends GeneralFactoryPage {
         waitingForPageElement(labelHuawei);
     }
 
-    public void checkThatOnlySelectedPhonesAvailable(String firstModel, String secondModel, String thirdModel) {
-        for (WebElement e : goodsTitle) {
-            assertTrue(e.getText().contains(firstModel) || e.getText().contains(secondModel) || e.getText().contains(thirdModel));
-        }
+    public List<WebElement> checkThatOnlySelectedPhonesAvailable() {
+        return getElementList(goodsTitle);
     }
 
     public void checkThatOnlyOneSelectedPhoneAvailable(String model) {

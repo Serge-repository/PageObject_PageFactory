@@ -50,7 +50,6 @@ public class H24Task1 {
     public void compareMonitors() {
         homePage.locateToDropdown();
         homePage.clickOnMonitorsLink();
-        productsListPage.closeBanner();
         productsListPage.findElementByPrice(4000);
         productPage.clickOnCompareButton();
         assertTrue(productPage.productAddedToCompare());
@@ -69,10 +68,10 @@ public class H24Task1 {
         int secondMonitorPrice = productPage.getMonitorPrice();
 
         productPage.openComparePage();
-        assertEquals((compareProductsPage.getAllProductPricesFromComparePage()).size(), 2);
-        assertEquals(monitorTitle, compareProductsPage.getFirstProductName());
-        assertEquals(secondMonitorTitle, compareProductsPage.getSecondProductName());
-        assertEquals(secondMonitorPrice, compareProductsPage.getSecondProductPrice());
-        assertEquals(monitorPrice, compareProductsPage.getFirstProductPrice());
+        assertEquals((compareProductsPage.getAllProductPricesFromComparePage()).size(), 2, "Checking that 2 products available");
+        assertEquals(monitorTitle, compareProductsPage.getProductName(1), "First selected product name is correct");
+        assertEquals(secondMonitorTitle, compareProductsPage.getProductName(0), "Second selected product name is correct");
+        assertEquals(secondMonitorPrice, compareProductsPage.getSecondProductPrice(), "Second selected product price is correct");
+        assertEquals(monitorPrice, compareProductsPage.getFirstProductPrice(), "Second selected product name is correct");
     }
 }

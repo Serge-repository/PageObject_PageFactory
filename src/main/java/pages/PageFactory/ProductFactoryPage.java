@@ -3,11 +3,9 @@ package pages.PageFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElement;
-import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElementValue;
 
 public class ProductFactoryPage extends GeneralFactoryPage {
 
@@ -27,13 +25,15 @@ public class ProductFactoryPage extends GeneralFactoryPage {
     private WebElement compareMonitorsLink;
     @FindBy(css = "div[class='product__prices']")
     private WebElement productPricesInCompareList;
+    @FindBy(css = "span.product__code-accent")
+    private WebElement productCode;
 
     public ProductFactoryPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
-        PageFactory.initElements(driver, this);
     }
 
     public void clickOnCompareButton() {
+        scrollMethod(productCode);
         clickAction(compareButton);
         waitingForPageElement(numberAddedToCompareList);
     }
