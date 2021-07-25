@@ -10,21 +10,6 @@ import static org.testng.Assert.assertTrue;
 
 public class H24Task2_1 extends TestBaseFactory {
 
-    @BeforeClass
-    public void actionsBeforeTestClass() {
-        super.actionsBeforeTestClass();
-    }
-
-    @AfterClass
-    public void actionsAfterTestClass() {
-        super.actionsAfterTestClass();
-    }
-
-    @BeforeMethod
-    public void actionsBeforeTestMethod() {
-        super.actionsBeforeTestMethod();
-    }
-
     @Test
     public void searchByManufacturers() {
         productsListFactoryPage.samsungPhonesSearch();
