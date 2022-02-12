@@ -38,6 +38,7 @@ public class GeneralFactoryPage {
     protected WebElement getElement(WebElement pageElement) {
         return pageElement;
     }
+
     protected void scrollMethod(WebElement requiredElement) {
         waitingForPageElement(requiredElement);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", getElement(requiredElement));
